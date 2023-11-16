@@ -1,0 +1,46 @@
+.custom-text-size {
+    font-size: 1.5rem;
+}
+
+.clicked-color {
+    color: red;
+}
+
+.normal-color {
+    color: blue;
+}
+
+.bg-0F4C5C {
+    background-color: #0F4C5C;
+}
+
+.nav-font {
+    font-weight: bold;
+}
+
+.custom-padding {
+    padding-left: 10rem;
+}
+
+@media (min-width: 1025px) {
+    .custom-padding {
+        padding-left: 25rem;
+    }
+}
+
+/* .text-white {
+    color: white;
+    text-decoration: none;
+    text-decoration-skip-ink: auto; 
+    position: relative; 
+}
+
+.text-white::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px; 
+    height: 3px;
+    width: 100%;
+    background-color: white; 
+} */
