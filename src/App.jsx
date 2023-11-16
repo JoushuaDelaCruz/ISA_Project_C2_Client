@@ -1,6 +1,5 @@
 import Home from "./Pages/Home";
-import LogIn from "./Pages/LogIn";
-import SignUp from "./Pages/SignUp";
+import Authenticate from "./Pages/authenticate";
 import {
   createBrowserRouter,
   Route,
@@ -13,8 +12,7 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="/login" exact element={<LogIn />} />
-        <Route path="/signup" exact element={<SignUp />} />
+        <Route path="/auth" exact element={<Authenticate />} />
       </Route>
     )
   );
