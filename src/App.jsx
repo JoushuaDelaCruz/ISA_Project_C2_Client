@@ -1,7 +1,25 @@
-import React from "react";
+import Home from "./Pages/Home";
+import LogIn from "./Pages/LogIn";
+import SignUp from "./Pages/SignUp";
+import {
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  createRoutesFromElements,
+} from "react-router-dom";
 
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const routes = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/">
+        <Route index element={<Home />} />
+        <Route path="/login" exact element={<LogIn />} />
+        <Route path="/signup" exact element={<SignUp />} />
+      </Route>
+    )
+  );
+
+  return <RouterProvider router={routes} />;
 };
 
 export default App;
