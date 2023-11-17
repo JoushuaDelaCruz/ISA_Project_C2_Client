@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Authenticate = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,11 +14,14 @@ const Authenticate = () => {
 
   return (
     <main className="h-screen flex flex-col w-screen min-h-full">
-      <section className=" bg-gradient-to-t from-spanish-orange via-spanish-orange to-carmine flex-grow flex flex-col items-center md:h-full">
-        <h1 className="text-white h-fit py-7 text-4xl font-black font-nunito pt-10">
+      <section className="background flex-grow flex flex-col items-center md:h-full">
+        <Link
+          to={"/"}
+          className="text-white h-fit py-7 text-4xl font-black font-nunito pt-10"
+        >
           {" "}
           PicAWord{" "}
-        </h1>
+        </Link>
         <div className="flex-grow flex justify-center items-center w-11/12 max-w-md h-5/6 md:h-1/2">
           <div className="w-full">
             <header className="flex text-xl text-gray-300 text-opacity-50 font-black gap-1">
