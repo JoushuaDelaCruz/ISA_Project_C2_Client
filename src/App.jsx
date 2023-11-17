@@ -1,17 +1,21 @@
 import Home from "./Pages/Home";
-import Authenticate from "./Pages/authenticate";
+import Authenticate from "./Pages/Authenticate";
 import {
   createBrowserRouter,
   Route,
   RouterProvider,
   createRoutesFromElements,
 } from "react-router-dom";
+import Teams from "./Pages/Teams";
+import CreateRoom from "./Pages/CreateRoom";
 
 const App = () => {
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<Home />} />
+        <Route path="/teams" element={<Teams />} />
+        <Route path="/create-room" element={<CreateRoom />} />
         <Route path="/auth" exact element={<Authenticate />} />
       </Route>
     )
