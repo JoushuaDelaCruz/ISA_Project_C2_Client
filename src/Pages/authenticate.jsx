@@ -13,8 +13,8 @@ const Authenticate = () => {
 
   return (
     <main className="h-screen flex flex-col w-screen min-h-full">
-      <section className=" bg-gradient-to-b from-spanish-orange via-spanish-orange to-carmine flex-grow flex flex-col items-center md:h-full">
-        <h1 className="text-white h-fit py-7 text-3xl font-black font-nunito">
+      <section className=" bg-gradient-to-t from-spanish-orange via-spanish-orange to-carmine flex-grow flex flex-col items-center md:h-full">
+        <h1 className="text-white h-fit py-7 text-4xl font-black font-nunito pt-10">
           {" "}
           PicAWord{" "}
         </h1>
