@@ -37,32 +37,32 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-transparent p-4 nav-font">
+    <nav className="bg-transparent p-4 nav-font pt-8">
       <div className="container mx-auto md:flex md:items-center md:justify-center">
         <a
           href="/"
-          className="text-white text-lg font-semibold md:block hidden custom-text-size md"
+          className="text-white md:block hidden custom-text-size md font-nunito text-4xl font-bold pt-4"
         >
           PicAWord
         </a>
         <div className="hidden md:block custom-padding">
           <a
             href="/"
-            className={`text-white mx-4 custom-text-size ${clickedLogin ? '' : 'inactive'}`}
+            className={`text-white mx-4 custom-text-size ${clickedLogin ? '' : 'inactive'} font-nunito pt-4`}
             onClick={handleClickLogin}
           >
             Create Room
           </a>
           <a
             href="/"
-            className={`text-white mx-4 custom-text-size ${clickedSignUp ? '' : 'inactive'}`}
+            className={`text-white mx-4 custom-text-size ${clickedSignUp ? '' : 'inactive'} font-nunito pt-4`}
             onClick={handleClickSignUp}
           >
             Team
           </a>
           <a
             href="/"
-            className={`text-white mx-4 custom-text-size ${clickedAuthentication ? '' : 'inactive'}`}
+            className={`text-white mx-4 custom-text-size ${clickedAuthentication ? '' : 'inactive'} font-nunito pt-4`}
             onClick={handleClickAuthentication}
           >
             Authentication
@@ -73,9 +73,9 @@ const Navbar = () => {
           <div className="block md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-white focus:outline-none mr-8"
+              className="text-white focus:outline-none"
             >
-              &#9776;
+              <i className="fa-solid fa-bars text-3xl"></i>
             </button>
           </div>
         )}
@@ -86,25 +86,32 @@ const Navbar = () => {
               onClick={toggleMenu}
               className="text-white absolute top-0 left-0 m-4 focus:outline-none"
             >
-              X
+              <i className="fa-solid fa-x text-3xl pt-4 pl-4"></i>
             </button>
             <a href="/" className="text-white mt-4 flex justify-center">
-              <span className="text-2xl font-bold">Logo</span>
+              <span className="text-4xl font-bold font-nunito">PicAWord</span>
             </a>
             <div className="text-white text-left w-full px-4 mt-12">
             <a
               href="/"
-              className={`my-5 transition duration-300 block custom-text-size ml-4 p-4`}
+              className={`my-5 transition duration-300 block custom-text-size ml-4 p-4 font-nunito`}
               onClick={handleClickLogin}
             >
-              Log In
+              Create Room
             </a>
             <a
               href="/"
-              className={`my-5 transition duration-300 block custom-text-size ml-4 p-4`}
+              className={`my-5 transition duration-300 block custom-text-size ml-4 p-4 font-nunito`}
               onClick={handleClickSignUp}
             >
-              Sign Up
+              Team
+            </a>
+            <a
+              href="/"
+              className={`my-5 transition duration-300 block custom-text-size ml-4 p-4 font-nunito`}
+              onClick={handleClickSignUp}
+            >
+              Authentication
             </a>
             </div>
           </div>
