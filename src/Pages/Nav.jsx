@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-transparent p-4 nav-font pt-8">
+    <nav className="bg-transparent p-4 font-bold pt-8">
       <div className="container mx-auto md:flex md:items-center md:justify-center">
         <a
           href="/"
@@ -73,7 +73,7 @@ const Navbar = () => {
           <div className="block md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-white focus:outline-none"
+              className="text-white focus:outline-none pl-2"
             >
               <i className="fa-solid fa-bars text-3xl"></i>
             </button>
@@ -81,7 +81,7 @@ const Navbar = () => {
         )}
         </div>
         {isMenuOpen && (
-          <div className="md:hidden absolute inset-0 bg-gray-800 flex flex-col items-center justify-start bg-black bg-opacity-80 p-4">
+          <div className="md:hidden absolute inset-0 flex flex-col items-center justify-start bg-gray-800 bg-opacity-80 p-4">
             <button
               onClick={toggleMenu}
               className="text-white absolute top-0 left-0 m-4 focus:outline-none"

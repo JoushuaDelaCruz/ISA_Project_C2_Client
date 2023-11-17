@@ -2,20 +2,8 @@
     font-size: 1.5rem;
 }
 
-.clicked-color {
-    color: red;
-}
-
-.normal-color {
-    color: blue;
-}
-
 .bg-0F4C5C {
     background-color: #0F4C5C;
-}
-
-.nav-font {
-    font-weight: bold;
 }
 
 .custom-padding {
