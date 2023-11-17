@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .background {
+        @apply bg-gradient-to-t from-spanish-orange via-spanish-orange to-carmine min-h-screen w-screen
+    }
+}
