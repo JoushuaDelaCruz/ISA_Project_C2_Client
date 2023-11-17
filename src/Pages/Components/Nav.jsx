@@ -1,18 +1,48 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const pages = [
+  {
+    id: 1,
+    name: "Home",
+    path: "/",
+  },
+  {
+    id: 2,
+    name: "create room",
+    path: "/create-room",
+  },
+  { id: 3, name: "teams", path: "/teams" },
+  { id: 4, name: "log in", path: "/auth" },
+];
+
+const pageBtnState = [
+  {
+    state: "active",
+    className:
+      "text-white mx-4 text-2xl capitalize font-nunito border-b-4 pb-4 hover:border-gray-300 hover:text-gray-300 hover:text-opacity-70 hover:border-opacity-70 transition duration-300",
+  },
+  {
+    state: "inactive",
+    className:
+      "text-gray-400 capitalize text-opacity-70 border-gray-400 border-opacity-70 mx-4 text-2xl font-nunito border-b-4 pb-4 hover:border-white hover:text-white hover:text-opacity-70 hover:border-opacity-70 transition duration-300",
+  },
+  {
+    state: "menu",
+    className:
+      "my-5 transition duration-300 block capitalize text-2xl ml-4 p-4 font-nunito",
+  },
+];
+
+const Navbar = ({ pageNum }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    setClickedLogin(false);
-    setClickedSignUp(false);
-    setClickedAuthentication(false);
   };
 
   return (
-    <nav className="bg-transparent p-4 font-bold pt-14">
+    <nav className="bg-transparent p-4 font-bold pt-8">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           to="/"
@@ -21,24 +51,21 @@ const Navbar = () => {
           PicAWord
         </Link>
         <div className="hidden w-full md:flex justify-end">
-          <Link
-            to="/"
-            className={`text-white mx-4 text-2xl font-nunito border-b-4 pb-4 hover:border-gray-300 hover:text-gray-300 hover:text-opacity-70 hover:border-opacity-70 transition duration-300`}
-          >
-            Create Room
-          </Link>
-          <Link
-            to="/"
-            className={`text-gray-400 text-opacity-70 border-gray-400 border-opacity-70 mx-4 text-2xl font-nunito border-b-4 pb-4 hover:border-white hover:text-white hover:text-opacity-70 hover:border-opacity-70 transition duration-300`}
-          >
-            Team
-          </Link>
-          <Link
-            to="/"
-            className={`text-gray-400 text-opacity-70 border-gray-400 border-opacity-70 mx-4 text-2xl font-nunito border-b-4 pb-4 hover:border-white hover:text-white hover:text-opacity-70 hover:border-opacity-70 transition duration-300`}
-          >
-            Log In
-          </Link>
+          {pages.map((page) => {
+            return (
+              <Link
+                to={page.path}
+                className={`${
+                  page.id === pageNum
+                    ? pageBtnState[0].className
+                    : pageBtnState[1].className
+                }`}
+              >
+                {page.name}
+              </Link>
+            );
+          })}
+          ;
         </div>
         <div>
           {!isMenuOpen && (
@@ -64,24 +91,17 @@ const Navbar = () => {
               <span className="text-4xl font-black font-nunito">PicAWord</span>
             </Link>
             <div className="text-white text-left w-full px-4 mt-12">
-              <Link
-                to="/"
-                className={`my-5 transition duration-300 block text-2xl ml-4 p-4 font-nunito`}
-              >
-                Create Room
-              </Link>
-              <Link
-                to="/"
-                className={`my-5 transition duration-300 block text-2xl ml-4 p-4 font-nunito`}
-              >
-                Team
-              </Link>
-              <Link
-                to="/"
-                className={`my-5 transition duration-300 block text-2xl ml-4 p-4 font-nunito`}
-              >
-                Authentication
-              </Link>
+              {pages.map((page) => {
+                return (
+                  <Link
+                    to={page.path}
+                    className={`${pageBtnState[2].className}`}
+                  >
+                    {page.name}
+                  </Link>
+                );
+              })}
+              ;
             </div>
           </div>
         )}
