@@ -41,9 +41,9 @@ const Navbar = () => {
       <div className="container mx-auto md:flex md:items-center md:justify-center">
         <a
           href="/"
-          className="text-lg font-semibold md:block hidden custom-text-size md"
+          className="text-white text-lg font-semibold md:block hidden custom-text-size md"
         >
-          Logo
+          PicAWord
         </a>
         <div className="hidden md:block custom-padding">
           <a
