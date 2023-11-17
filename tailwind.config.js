@@ -10,6 +10,9 @@ export default {
         "spanish-orange": "#E36414",
         "midnight-green": "#0F4C5C",
       },
+      fontFamily: {
+        nunito: ["Nunito", "sans-serif"],
+      },
     },
   },
   plugins: [],
