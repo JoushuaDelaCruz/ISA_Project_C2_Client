@@ -5,11 +5,59 @@ const Authenticate = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isUsernameValid, setIsUsernameValid] = useState(null);
+  const [isPasswordValid, setIsPasswordValid] = useState(null);
+  const [invalidResponse, setInvalidResponse] = useState(null);
 
   const toggleLogin = () => {
     setUsername("");
     setPassword("");
     setIsLogin(!isLogin);
+    setIsUsernameValid(null);
+    setIsPasswordValid(null);
+    setInvalidResponse(null);
+  };
+
+  const validateUsername = () => {
+    if (username.length <= 0) {
+      setIsUsernameValid(false);
+      return false;
+    }
+    setIsUsernameValid(true);
+    return true;
+  };
+
+  const validatePassword = () => {
+    if (password.length <= 0) {
+      setIsPasswordValid(false);
+      return false;
+    }
+    setIsPasswordValid(true);
+    return true;
+  };
+
+  const handleSignUp = () => {
+    console.log("Signing up...");
+  };
+
+  const handleLogin = () => {
+    console.log("Logging in...");
+  };
+
+  const handleClick = () => {
+    const checkUsername = validateUsername();
+    const checkPassword = validatePassword();
+
+    if (!checkPassword || !checkUsername) {
+      setInvalidResponse("Please enter a valid username and password");
+      return;
+    }
+
+    if (isLogin) {
+      handleLogin();
+    } else {
+      handleSignUp();
+    }
   };
 
   return (
@@ -48,32 +96,44 @@ const Authenticate = () => {
               </button>
             </header>
             <div className=" flex flex-col justify-around bg-tyrian-purple/30 rounded-b-md px-3 py-8 gap-5">
+              {invalidResponse !== null && (
+                <p className="text-center font-bold bg-white/60 text-red-600 rounded-md py-px ring-2 ring-red-500">
+                  {invalidResponse}
+                </p>
+              )}
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder={isLogin ? "Username0123" : "Create a new username"}
-                className="w-full bg-white/60 rounded-md border-2 border-white/50 py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white"
+                className={`w-full bg-white/60 rounded-md border-2 ${
+                  isUsernameValid ?? true ? "border-white/50" : "border-red-400"
+                } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
               />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={isLogin ? "Password0123" : "Enter a new password"}
-                className="w-full bg-white/60 rounded-md border-2 border-white/50 py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white"
+                className={`w-full bg-white/60 rounded-md border-2 ${
+                  isPasswordValid ?? true ? "border-white/50" : "border-red-400"
+                } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
               />
             </div>
           </div>
         </div>
         <div className="flex-grow cursor-pointer mb-4 md:mb-0">
-          <button className="flex justify-center transform items-center content-center rounded-md bg-white gap-3 ring-1 py-2 px-16 border-b-4 shadow-md border-black transition duration-200 ease-in-out hover:translate-y-px hover:border-b-2">
+          <button
+            className="flex justify-center transform items-center content-center rounded-md bg-white gap-3 ring-1 py-2 px-16 border-b-4 shadow-md border-black transition duration-200 ease-in-out hover:translate-y-px hover:border-b-2"
+            onClick={handleClick}
+          >
             {" "}
             <i className="fa-solid fa-play fa-xl text-cyan-400"></i>
             <label
               htmlFor="play"
               className="text-xl uppercase font-bold cursor-pointer"
             >
-              Play
+              {isLogin ? "Play" : "Create"}
             </label>
           </button>
         </div>
