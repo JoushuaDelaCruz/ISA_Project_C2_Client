@@ -54,6 +54,7 @@ const Navbar = ({ pageNum }) => {
           {pages.map((page) => {
             return (
               <Link
+                key={page.id}
                 to={page.path}
                 className={`${
                   page.id === pageNum
@@ -94,6 +95,7 @@ const Navbar = ({ pageNum }) => {
               {pages.map((page) => {
                 return (
                   <Link
+                    key={`menu-${page.id}`}
                     to={page.path}
                     className={`${pageBtnState[2].className}`}
                   >
