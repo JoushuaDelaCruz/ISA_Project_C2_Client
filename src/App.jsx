@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Teams from "./Pages/Teams";
 import CreateRoom from "./Pages/CreateRoom";
-import Admin from "./Pages/admin";
+import Admin from "./Pages/Admin";
 
 const App = () => {
   const routes = createBrowserRouter(
