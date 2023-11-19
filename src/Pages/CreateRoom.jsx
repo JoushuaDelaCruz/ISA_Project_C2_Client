@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Components/Nav";
 
 const CreateRoom = () => {
+  
   return (
     <div className="background ">
       <Navbar pageNum={2} />

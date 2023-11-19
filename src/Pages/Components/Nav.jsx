@@ -13,7 +13,8 @@ const pages = [
     path: "/create-room",
   },
   { id: 3, name: "teams", path: "/teams" },
-  { id: 4, name: "log in", path: "/auth" },
+  { id: 4, name: "admin", path: "/admin" },
+  { id: 5, name: "log in", path: "/auth" },
 ];
 
 const pageBtnState = [
@@ -34,7 +35,7 @@ const pageBtnState = [
   },
 ];
 
-const Navbar = ({ pageNum }) => {
+const Navbar = ({ pageNum, isAdmin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -65,7 +66,6 @@ const Navbar = ({ pageNum }) => {
               </Link>
             );
           })}
-          ;
         </div>
         <div>
           {!isMenuOpen && (
