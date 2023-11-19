@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const useRequest = () => {
   const getConfig = (method, data) => {
     const config = {
