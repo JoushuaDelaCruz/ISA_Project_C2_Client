@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Teams from "./Pages/Teams";
 import CreateRoom from "./Pages/CreateRoom";
+import Admin from "./Pages/admin";
 
 const App = () => {
   const routes = createBrowserRouter(
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/teams" element={<Teams />} />
         <Route path="/create-room" element={<CreateRoom />} />
         <Route path="/auth" exact element={<Authenticate />} />
+        <Route path="/admin" exact element={<Admin />} />
       </Route>
     )
   );
