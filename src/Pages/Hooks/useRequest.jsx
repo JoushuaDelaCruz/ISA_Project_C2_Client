@@ -1,57 +1,54 @@
-import { useCookies } from "react-cookie";
 import axios from "axios";
 
 const useRequest = () => {
-  const [, setCookie, removeCookie] = useCookies(["token"]);
-
-  const getConfig = (data) => {
+  const getConfig = (method, data) => {
     const config = {
+      method: method,
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      withCredentials: true,
-      data: data,
+      withCredentials: "include",
+      body: JSON.stringify(data),
     };
     return config;
   };
 
   const urlConstructor = (endpoint) => {
-    return import.meta.env.VITE_SERVER_URL + endpoint;
+    return import.meta.env.VITE_SERVER + endpoint;
   };
 
   const getRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
-    const response = await axios.get(url, getConfig(data));
-    return response.data;
+    let response = await fetch(url, getConfig("GET", data));
+    response = await response.json();
+    return response;
   };
 
   const postRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
-    const response = await axios.post(url, getConfig(data));
-    return response.data;
-  };
-
-  const setUpCookie = (token) => {
-    const expireTime = 60 * 60 * 1000;
-    setCookie("token", token, {
-      path: "/",
-      maxAge: expireTime,
-      sameSite: "strict",
-    });
+    let response = await fetch(url, getConfig("POST", data));
+    response = await response.json();
+    return response;
   };
 
   const logInRequest = async (credentials) => {
     try {
-      const endpoint = "auth/login";
-      const response = await postRequest(endpoint, credentials);
-      if (response.token) {
-        setUpCookie(response.token);
-        return null;
-      }
-      return response.message;
+      const endpoint = "/signin";
+      const { session } = await postRequest(endpoint, credentials);
+      return session.authenticated;
     } catch (e) {
-      return e.response.data.message;
+      return e.response;
+    }
+  };
+
+  const signUpRequest = async (credentials) => {
+    try {
+      const endpoint = "/signup";
+      const { session } = await postRequest(endpoint, credentials);
+      return session.authenticated;
+    } catch (e) {
+      return e.response;
     }
   };
 
@@ -59,7 +56,13 @@ const useRequest = () => {
     removeCookie("token");
   };
 
-  return { getRequest, postRequest, logInRequest, logOutRequest };
+  return {
+    getRequest,
+    postRequest,
+    logInRequest,
+    logOutRequest,
+    signUpRequest,
+  };
 };
 
 export default useRequest;

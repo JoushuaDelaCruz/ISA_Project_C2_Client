@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useRequest from "./Hooks/useRequest";
 
 const Authenticate = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -8,6 +9,8 @@ const Authenticate = () => {
   const [isUsernameValid, setIsUsernameValid] = useState(null);
   const [isPasswordValid, setIsPasswordValid] = useState(null);
   const [invalidResponse, setInvalidResponse] = useState(null);
+  const navigate = useNavigate();
+  const { logInRequest, signUpRequest } = useRequest();
 
   const toggleLogin = () => {
     setUsername("");
@@ -36,12 +39,24 @@ const Authenticate = () => {
     return true;
   };
 
-  const handleSignUp = () => {
-    console.log("Signing up...");
+  const handleSignUp = async () => {
+    const credentials = { username: username, password: password };
+    const success = await signUpRequest(credentials);
+    if (success) {
+      navigate("/");
+    } else {
+      setInvalidResponse("Username already exists");
+    }
   };
 
-  const handleLogin = () => {
-    console.log("Logging in...");
+  const handleLogin = async () => {
+    const credentials = { username: username, password: password };
+    const success = await logInRequest(credentials);
+    if (success) {
+      navigate("/");
+    } else {
+      setInvalidResponse("Invalid username or password");
+    }
   };
 
   const handleClick = () => {
