@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "./Components/Nav";
 
-const Home = () => {
-
+const Home = ({ user }) => {
+  console.log(user);
   return (
     <div className="background">
-      <Navbar pageNum={1} />
+      <Navbar pageNum={1} user={user} />
       <div className="text-red-600 w-screen h-screen flex justify-center items-center font-bold text-3xl">
         Home Content
       </div>
