@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./Components/Nav";
 
 const Home = ({ user }) => {
-  console.log(user);
   return (
     <div className="background">
       <Navbar pageNum={1} user={user} />
