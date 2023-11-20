@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useRequest from "../Hooks/useRequest";
 
 const pages = [
   {
@@ -14,7 +15,6 @@ const pages = [
   },
   { id: 3, name: "teams", path: "/teams" },
   { id: 4, name: "admin", path: "/admin" },
-  { id: 5, name: "log in", path: "/auth" },
 ];
 
 const pageBtnState = [
@@ -35,11 +35,21 @@ const pageBtnState = [
   },
 ];
 
-const Navbar = ({ pageNum, isAdmin }) => {
+const Navbar = ({ pageNum, user }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { logOutRequest } = useRequest();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogOut = () => {
+    const result = logOutRequest();
+    if (result) {
+      window.location.href = "/";
+    } else {
+      alert("Something went wrong");
+    }
   };
 
   return (
@@ -47,12 +57,15 @@ const Navbar = ({ pageNum, isAdmin }) => {
       <div className="container mx-auto flex justify-between items-center">
         <Link
           to="/"
-          className="text-white md:block hidden text-4xl md font-nunito font-black"
+          className="text-white lg:block hidden text-4xl font-nunito font-black"
         >
           PicAWord
         </Link>
-        <div className="hidden w-full md:flex justify-end">
+        <div className="hidden w-full lg:flex justify-end">
           {pages.map((page) => {
+            if (page.id === 4 && user?.user_privilege !== "ADMIN") {
+              return;
+            }
             return (
               <Link
                 key={page.id}
@@ -67,10 +80,22 @@ const Navbar = ({ pageNum, isAdmin }) => {
               </Link>
             );
           })}
+          {user ? (
+            <button
+              className={`${pageBtnState[1].className}`}
+              onClick={handleLogOut}
+            >
+              Log Out
+            </button>
+          ) : (
+            <Link to={"/auth"} className={`${pageBtnState[1].className}`}>
+              Log in
+            </Link>
+          )}
         </div>
         <div>
           {!isMenuOpen && (
-            <div className="block md:hidden">
+            <div className="block lg:hidden">
               <button
                 onClick={toggleMenu}
                 className="text-white focus:outline-none pl-2"
@@ -81,7 +106,7 @@ const Navbar = ({ pageNum, isAdmin }) => {
           )}
         </div>
         {isMenuOpen && (
-          <div className="md:hidden absolute inset-0 flex flex-col items-center justify-start bg-gray-800 bg-opacity-80 p-4">
+          <div className="lg:hidden absolute inset-0 flex flex-col items-center justify-start bg-gray-800 bg-opacity-80 p-4">
             <button
               onClick={toggleMenu}
               className="text-white absolute top-0 left-0 m-4 focus:outline-none"
