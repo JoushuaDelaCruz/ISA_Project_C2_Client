@@ -30,20 +30,22 @@ const useRequest = () => {
     return response;
   };
 
-  const logInRequest = async (credentials) => {
+  const logInRequest = async (credentials, setUser) => {
     try {
       const endpoint = "/signin";
       const { session } = await postRequest(endpoint, credentials);
+      setUser(session.user);
       return session.authenticated;
     } catch (e) {
       return e.response;
     }
   };
 
-  const signUpRequest = async (credentials) => {
+  const signUpRequest = async (credentials, setUser) => {
     try {
       const endpoint = "/signup";
       const { session } = await postRequest(endpoint, credentials);
+      setUser(session.user);
       return session.authenticated;
     } catch (e) {
       return e.response;
@@ -51,7 +53,10 @@ const useRequest = () => {
   };
 
   const logOutRequest = async () => {
-    removeCookie("token");
+    const endpoint = "/signout";
+    const response = await getRequest(endpoint);
+    console.log(response);
+    return response;
   };
 
   return {
