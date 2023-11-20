@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useRequest from "./Hooks/useRequest";
 
-const Authenticate = () => {
+const Authenticate = ({ setUser }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +41,7 @@ const Authenticate = () => {
 
   const handleSignUp = async () => {
     const credentials = { username: username, password: password };
-    const success = await signUpRequest(credentials);
+    const success = await signUpRequest(credentials, setUser);
     if (success) {
       navigate("/");
     } else {
@@ -51,7 +51,7 @@ const Authenticate = () => {
 
   const handleLogin = async () => {
     const credentials = { username: username, password: password };
-    const success = await logInRequest(credentials);
+    const success = await logInRequest(credentials, setUser);
     if (success) {
       navigate("/");
     } else {
