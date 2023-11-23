@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      spacing: {
+        '97': '64rem',
+        '98': "60rem",
+      },
       colors: {
         "tyrian-purple": "#5F0F40",
         carmine: "#9A031E",
