@@ -83,7 +83,7 @@ const Authenticate = ({ setUser }) => {
           className="text-white h-fit py-7 text-4xl font-black font-nunito pt-10"
         >
           {" "}
-          PicAWord{" "}
+          TeLore{" "}
         </Link>
         <div className="flex-grow flex justify-center items-center w-11/12 max-w-md h-5/6 md:h-1/2">
           <div className="w-full">

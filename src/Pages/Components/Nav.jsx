@@ -59,7 +59,7 @@ const Navbar = ({ pageNum, user }) => {
           to="/"
           className="text-white lg:block hidden text-4xl font-nunito font-black"
         >
-          PicAWord
+          TeLore
         </Link>
         <div className="hidden w-full lg:flex justify-end">
           {pages.map((page) => {
@@ -114,7 +114,7 @@ const Navbar = ({ pageNum, user }) => {
               <i className="fa-solid fa-x text-3xl pt-4 pl-4"></i>
             </button>
             <Link to="/" className="text-white mt-4 flex justify-center">
-              <span className="text-4xl font-black font-nunito">PicAWord</span>
+              <span className="text-4xl font-black font-nunito">TeLore</span>
             </Link>
             <div className="text-white text-left w-full px-4 mt-12">
               {pages.map((page) => {
