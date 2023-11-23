@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      minHeight: {
+        36: "9rem",
+      },
       colors: {
         "tyrian-purple": "#5F0F40",
         carmine: "#9A031E",
