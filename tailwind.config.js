@@ -4,8 +4,11 @@ export default {
   theme: {
     extend: {
       spacing: {
-        '97': '64rem',
-        '98': "60rem",
+        97: "64rem",
+        98: "60rem",
+      },
+      minHeight: {
+        36: "9rem",
       },
       colors: {
         "tyrian-purple": "#5F0F40",
