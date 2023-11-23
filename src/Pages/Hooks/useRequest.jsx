@@ -13,8 +13,8 @@ const useRequest = () => {
   };
 
   const urlConstructor = (endpoint) => {
-    // return import.meta.env.VITE_SERVER + endpoint;
-    return "https://dolphin-app-fhiqy.ondigitalocean.app" + endpoint;
+    // Make sure to add the VITE_SERVER variable to your .env file
+    return import.meta.env.VITE_SERVER + endpoint;
   };
 
   const getRequest = async (endpoint, data = undefined) => {
