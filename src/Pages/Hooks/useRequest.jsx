@@ -13,20 +13,17 @@ const useRequest = () => {
   };
 
   const urlConstructor = (endpoint) => {
-    return import.meta.env.VITE_SERVER + endpoint;
+    // return import.meta.env.VITE_SERVER + endpoint;
+    return "https://dolphin-app-fhiqy.ondigitalocean.app" + endpoint;
   };
 
   const getRequest = async (endpoint, data = undefined) => {
-    const url = new URL(urlConstructor(endpoint));
-  
-    if (data) {
-      Object.keys(data).forEach(key => url.searchParams.append(key, data[key]));
-    }
-  
-    let response = await fetch(url, getConfig("GET", undefined));
+    const url = urlConstructor(endpoint);
+    let response = await fetch(url, getConfig("GET", data));
     response = await response.json();
     return response;
   };
+
   const postRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     let response = await fetch(url, getConfig("POST", data));
@@ -63,10 +60,11 @@ const useRequest = () => {
     return response;
   };
 
-  const generateTokens = async (characterContext) => {
+  const generateTokens = async (description) => {
     try {
       const tokensEndpoint = `/model/GenerateTokens`;
-      const tokensResponse = await getRequest(tokensEndpoint, characterContext);
+      const url = `${tokensEndpoint}?description=${encodeURIComponent(description)}`;
+      const tokensResponse = await getRequest(url);
       console.log(tokensResponse);
       return tokensResponse;
     } catch (error) {
@@ -75,10 +73,14 @@ const useRequest = () => {
     }
   };
   
+  
+  
   const generateStory = async (tokens) => {
-    try {;
+    try {
       const storyEndpoint = `/open-ai/GenerateStory`;
-      const storyResponse = await getRequest(storyEndpoint, tokens);
+      const promptParam = encodeURIComponent(JSON.stringify(tokens));
+      const url = `${storyEndpoint}?Prompt=${promptParam}`;
+      const storyResponse = await getRequest(url);
       console.log(storyResponse);
       return storyResponse;
     } catch (error) {
@@ -86,6 +88,7 @@ const useRequest = () => {
       throw error;
     }
   };
+  
 
   const getContextToStory = async (characterContext) => {
     try {
