@@ -14,7 +14,7 @@ const Home = ({ user }) => {
       const response = await getContextToStory(characterContext);
       setStoryResult(response);
       setError(null);
-      setShowInput(false); // Once result is obtained, hide the input field
+      setShowInput(false);
     } catch (error) {
       console.error("Error fetching story:", error);
       setStoryResult(null);
@@ -23,11 +23,11 @@ const Home = ({ user }) => {
   };
 
   const handleGoBack = () => {
-    setShowInput(true); // Show the input field again
-    setCharacterContext(""); // Reset character context
+    setShowInput(true);
+    setCharacterContext("");
     setStoryResult(null);
     setError(null);
-  };  
+  };
 
   useEffect(() => {
     if (storyResult) {
@@ -44,28 +44,35 @@ const Home = ({ user }) => {
             Telore crafts captivating fantasy backstories from your character context using artificial intelligence and storytelling magic. Try it out!
           </div>
         )}
+
         {error && (
-          <div className="mb-4 pt-72 w-97 flex justify-center text-center pr-8">
-            <p>An error occurred: {error.message}</p>
-            <button className="bg-midnight-green text-white rounded-lg m-2" onClick={handleGoBack}>
+          <div className="relative flex flex-col items-center justify-center mt-72">
+            <div className="bg-white rounded-lg p-4 shadow-md text-center">
+              <p>An error occurred: {error.message}</p>
+            </div>
+            <button className="bg-midnight-green text-white rounded-lg p-2 mt-2" onClick={handleGoBack}>
               Back
             </button>
           </div>
         )}
 
         {!error && storyResult && (
-          <div className="mb-4 pt-72 w-97 flex justify-center text-center pr-8">
-            <p>Status Code: {storyResult.statusCode}</p>
-            <p>Error Message: {storyResult.message}</p>
-            <p>Error: {storyResult.error}</p>
-            <button className="bg-midnight-green text-white rounded-lg m-2" onClick={handleGoBack}>
+          <div className="relative flex flex-col items-center justify-center mt-72">
+            <div className="bg-white rounded-lg p-4 shadow-md text-center">
+              <p>Status Code: {storyResult.statusCode}</p>
+              <p>Error Message: {storyResult.message}</p>
+              <p>Error: {storyResult.error}</p>
+            </div>
+            <button className="bg-midnight-green text-white rounded-lg p-2 mt-2" onClick={handleGoBack}>
               Back
             </button>
           </div>
         )}
+
+
         {!error && !storyResult && !showInput && (
-          <div className="mb-4 pt-72 w-97 flex justify-center text-center pr-8">
-            <button className="bg-midnight-green text-white rounded-lg m-2" onClick={handleGoBack}>
+          <div className="mb-4 text-center">
+            <button className="bg-midnight-green text-white rounded-lg p-2 mt-2" onClick={handleGoBack}>
               Back
             </button>
           </div>

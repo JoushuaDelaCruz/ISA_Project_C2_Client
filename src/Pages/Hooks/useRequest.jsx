@@ -73,8 +73,6 @@ const useRequest = () => {
     }
   };
   
-  
-  
   const generateStory = async (tokens) => {
     try {
       const storyEndpoint = `/open-ai/GenerateStory`;
@@ -101,6 +99,18 @@ const useRequest = () => {
     }
   };
 
+  const pingAuthRequest = async () => {
+    try {
+      const endpoint = "/ping"; 
+      const response = await getRequest(endpoint);
+      const authenticated = response && response.authenticated;
+      return authenticated;
+    } catch (error) {
+      console.error("Error pinging authentication:", error);
+      throw error;
+    }
+  };
+
   return {
     getRequest,
     postRequest,
@@ -108,6 +118,7 @@ const useRequest = () => {
     logOutRequest,
     signUpRequest,
     getContextToStory,
+    pingAuthRequest,
   };
 };
 

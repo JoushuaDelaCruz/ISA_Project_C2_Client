@@ -8,11 +8,11 @@ const pages = [
     name: "Home",
     path: "/",
   },
-  {
-    id: 2,
-    name: "create room",
-    path: "/create-room",
-  },
+  // {
+  //   id: 2,
+  //   name: "create room",
+  //   path: "/create-room",
+  // },
   { id: 3, name: "profile", path: "/profile" },
   { id: 4, name: "admin", path: "/admin" },
 ];
