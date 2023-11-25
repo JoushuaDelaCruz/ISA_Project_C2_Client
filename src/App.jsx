@@ -16,7 +16,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   console.log(user)
   const adminLoader = async () => {
-    if (user && user.admin) {
+    if (user && user.privilege === "ADMIN") {
       return null;
     } else {
       window.location.href = "/";
@@ -49,9 +49,9 @@ const App = () => {
           loader={profileLoader}
           element={<Profile user={user} />}
         />
-        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/admin" element={<Admin />} /> */}
 
-        {/* <Route loader={adminLoader} path="/admin" exact element={<Admin />} /> */}
+        <Route loader={adminLoader} path="/admin" exact element={<Admin />} />
       </Route>
     )
   );
