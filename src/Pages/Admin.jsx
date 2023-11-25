@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Components/Nav";
 import StoryCardAdmin from "./Components/StoryCardAdmin";
-import useRequest from "./Hooks/useRequest"; 
+import useRequest from "./Hooks/useRequest";
 
-const Admin = () => {
+const Admin = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [lores, setLores] = useState([]);
   const { getRequest } = useRequest();
@@ -13,6 +13,7 @@ const Admin = () => {
       try {
         const endpoint = "/story/allStories";
         const stories = await getRequest(endpoint);
+        console.log(stories);
         return stories;
       } catch (error) {
         console.error("Error fetching stories:", error);
@@ -21,11 +22,11 @@ const Admin = () => {
     };
 
     getAllStories();
-  },[]);
+  }, []);
 
   return (
     <main className="background flex flex-col gap-5">
-      <Navbar pageNum={4} />
+      <Navbar pageNum={4} user={user} />
       <section className="flex h-full flex-1 w-full px-7 pb-5 items-center flex-col gap-3">
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3 text-center uppercase text-xl text-midnight-green mt-4">
           <h3 className="flex justify-center">All User Lores</h3>
@@ -45,7 +46,9 @@ const Admin = () => {
             </div>
           </div>
         ) : (
-          <h3 className="flex justify-center">There are no user lores in the database</h3>
+          <h3 className="flex justify-center">
+            There are no user lores in the database
+          </h3>
         )}
       </section>
     </main>
@@ -53,4 +56,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
