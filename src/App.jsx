@@ -61,7 +61,12 @@ const App = () => {
           element={<Profile user={user} />}
         />
 
-        <Route loader={adminLoader} path="/admin" exact element={<Admin />} />
+        <Route
+          loader={adminLoader}
+          path="/admin"
+          exact
+          element={<Admin user={user} />}
+        />
       </Route>
     )
   );
