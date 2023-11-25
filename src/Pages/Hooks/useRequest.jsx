@@ -34,9 +34,10 @@ const useRequest = () => {
   const logInRequest = async (credentials, setUser) => {
     try {
       const endpoint = "/signin";
-      const { session } = await postRequest(endpoint, credentials);
-      setUser(session.user);
-      return session.authenticated;
+      const result = await postRequest(endpoint, credentials);
+      console.log("result", result);
+      setUser(result.username);
+      return true;
     } catch (e) {
       return e.response;
     }
@@ -86,7 +87,6 @@ const useRequest = () => {
       throw error;
     }
   };
-  
 
   const getContextToStory = async (characterContext) => {
     try {
