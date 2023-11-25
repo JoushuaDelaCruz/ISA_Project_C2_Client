@@ -41,7 +41,9 @@ const Home = ({ user }) => {
       <div className="w-screen h-screen flex flex-col items-center font-bold text-3xl">
         {!error && !storyResult && showInput && (
           <div className="mb-4 pt-72 w-97 flex justify-center text-center pr-8">
-            Telore crafts captivating fantasy backstories from your character context using artificial intelligence and storytelling magic. Try it out!
+            Telore crafts captivating fantasy backstories from your character
+            context using artificial intelligence and storytelling magic. Try it
+            out!
           </div>
         )}
 
@@ -50,7 +52,10 @@ const Home = ({ user }) => {
             <div className="bg-white rounded-lg p-4 shadow-md text-center">
               <p>An error occurred: {error.message}</p>
             </div>
-            <button className="bg-midnight-green text-white rounded-lg p-2 mt-2" onClick={handleGoBack}>
+            <button
+              className="bg-midnight-green text-white rounded-lg p-2 mt-2"
+              onClick={handleGoBack}
+            >
               Back
             </button>
           </div>
@@ -63,16 +68,21 @@ const Home = ({ user }) => {
               <p>Error Message: {storyResult.message}</p>
               <p>Error: {storyResult.error}</p>
             </div>
-            <button className="bg-midnight-green text-white rounded-lg p-2 mt-2" onClick={handleGoBack}>
+            <button
+              className="bg-midnight-green text-white rounded-lg p-2 mt-2"
+              onClick={handleGoBack}
+            >
               Back
             </button>
           </div>
         )}
 
-
         {!error && !storyResult && !showInput && (
           <div className="mb-4 text-center">
-            <button className="bg-midnight-green text-white rounded-lg p-2 mt-2" onClick={handleGoBack}>
+            <button
+              className="bg-midnight-green text-white rounded-lg p-2 mt-2"
+              onClick={handleGoBack}
+            >
               Back
             </button>
           </div>
@@ -86,7 +96,10 @@ const Home = ({ user }) => {
               value={characterContext}
               onChange={(e) => setCharacterContext(e.target.value)}
             />
-            <button className="bg-midnight-green text-white rounded-lg m-2" onClick={handleGetStory}>
+            <button
+              className="bg-midnight-green text-white rounded-lg m-2"
+              onClick={handleGetStory}
+            >
               <i className="fa-solid fa-arrow-right-to-bracket text-2xl p-1.5 pr-2"></i>
             </button>
           </div>

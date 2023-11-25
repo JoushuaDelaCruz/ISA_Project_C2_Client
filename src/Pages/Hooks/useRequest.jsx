@@ -35,8 +35,7 @@ const useRequest = () => {
     try {
       const endpoint = "/signin";
       const result = await postRequest(endpoint, credentials);
-      console.log("result", result);
-      setUser(result.username);
+      setUser(result.user);
       return true;
     } catch (e) {
       return e.response;
@@ -64,7 +63,9 @@ const useRequest = () => {
   const generateTokens = async (description) => {
     try {
       const tokensEndpoint = `/model/GenerateTokens`;
-      const url = `${tokensEndpoint}?description=${encodeURIComponent(description)}`;
+      const url = `${tokensEndpoint}?description=${encodeURIComponent(
+        description
+      )}`;
       const tokensResponse = await getRequest(url);
       console.log(tokensResponse);
       return tokensResponse;
@@ -73,7 +74,7 @@ const useRequest = () => {
       throw error;
     }
   };
-  
+
   const generateStory = async (tokens) => {
     try {
       const storyEndpoint = `/open-ai/GenerateStory`;
@@ -92,7 +93,7 @@ const useRequest = () => {
     try {
       const tokensResponse = await generateTokens(characterContext);
       const storyResponse = await generateStory(tokensResponse);
-      return storyResponse;
+      return storyResponse.prompt;
     } catch (error) {
       console.error("Error converting context to story:", error);
       throw error;
@@ -101,7 +102,7 @@ const useRequest = () => {
 
   const pingAuthRequest = async () => {
     try {
-      const endpoint = "/ping"; 
+      const endpoint = "/ping";
       const response = await getRequest(endpoint);
       const authenticated = response && response.authenticated;
       return authenticated;
