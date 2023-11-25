@@ -60,14 +60,13 @@ const useRequest = () => {
     return response;
   };
 
-  const generateTokens = async (description) => {
+  const generatedStory = async (description) => {
     try {
-      const tokensEndpoint = `/model/GenerateTokens`;
+      const tokensEndpoint = `/model/GenerateStory`;
       const url = `${tokensEndpoint}?description=${encodeURIComponent(
         description
       )}`;
       const tokensResponse = await getRequest(url);
-      console.log(tokensResponse);
       return tokensResponse;
     } catch (error) {
       console.error("Error generating tokens:", error);
@@ -75,25 +74,10 @@ const useRequest = () => {
     }
   };
 
-  const generateStory = async (tokens) => {
-    try {
-      const storyEndpoint = `/open-ai/GenerateStory`;
-      const promptParam = encodeURIComponent(JSON.stringify(tokens));
-      const url = `${storyEndpoint}?Prompt=${promptParam}`;
-      const storyResponse = await getRequest(url);
-      console.log(storyResponse);
-      return storyResponse;
-    } catch (error) {
-      console.error("Error generating story:", error);
-      throw error;
-    }
-  };
-
   const getContextToStory = async (characterContext) => {
     try {
-      const tokensResponse = await generateTokens(characterContext);
-      const storyResponse = await generateStory(tokensResponse);
-      return storyResponse.prompt;
+      const response = await generatedStory(characterContext);
+      return response.prompt;
     } catch (error) {
       console.error("Error converting context to story:", error);
       throw error;
