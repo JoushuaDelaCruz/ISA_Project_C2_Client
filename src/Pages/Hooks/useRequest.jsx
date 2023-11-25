@@ -6,7 +6,7 @@ const useRequest = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      withCredentials: "include",
+      credentials: "include",
       body: JSON.stringify(data),
     };
     return config;

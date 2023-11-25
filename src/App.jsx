@@ -14,7 +14,7 @@ import Profile from "./Pages/Profile";
 
 const App = () => {
   const [user, setUser] = useState(null);
-
+  console.log(user)
   const adminLoader = async () => {
     if (user && user.admin) {
       return null;
@@ -49,7 +49,9 @@ const App = () => {
           loader={profileLoader}
           element={<Profile user={user} />}
         />
-        <Route loader={adminLoader} path="/admin" exact element={<Admin />} />
+        <Route path="/admin" element={<Admin />} />
+
+        {/* <Route loader={adminLoader} path="/admin" exact element={<Admin />} /> */}
       </Route>
     )
   );
