@@ -9,12 +9,23 @@ import {
 import Teams from "./Pages/Teams";
 import CreateRoom from "./Pages/CreateRoom";
 import Admin from "./Pages/Admin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "./Pages/Profile";
+import useRequest from "./Pages/Hooks/useRequest";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  console.log(user)
+  const { getRequest } = useRequest();
+
+  useEffect(() => {
+    const verifyUser = async () => {
+      const endpoint = "/session";
+      const response = await getRequest(endpoint);
+      setUser(response.user);
+    };
+    verifyUser();
+  }, []);
+
   const adminLoader = async () => {
     if (user && user.admin) {
       return null;
@@ -49,9 +60,8 @@ const App = () => {
           loader={profileLoader}
           element={<Profile user={user} />}
         />
-        <Route path="/admin" element={<Admin />} />
 
-        {/* <Route loader={adminLoader} path="/admin" exact element={<Admin />} /> */}
+        <Route loader={adminLoader} path="/admin" exact element={<Admin />} />
       </Route>
     )
   );
