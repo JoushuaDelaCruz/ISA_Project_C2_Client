@@ -27,7 +27,7 @@ const App = () => {
   }, []);
 
   const adminLoader = async () => {
-    if (user && user.admin) {
+    if (user && user.privilege === "ADMIN") {
       return null;
     } else {
       window.location.href = "/";
