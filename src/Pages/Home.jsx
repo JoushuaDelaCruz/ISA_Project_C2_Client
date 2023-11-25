@@ -11,6 +11,10 @@ const Home = ({ user }) => {
 
   const handleGetStory = async () => {
     try {
+      if (!characterContext.trim()) {
+        throw new Error("Character context cannot be empty.");
+      }
+
       const response = await getContextToStory(characterContext);
       setStoryResult(response);
       setError(null);
@@ -63,11 +67,10 @@ const Home = ({ user }) => {
 
         {!error && storyResult && (
           <div className="relative flex flex-col items-center justify-center mt-72">
-            <div className="bg-white rounded-lg p-4 shadow-md text-center">
-              <p>Status Code: {storyResult.statusCode}</p>
-              <p>Error Message: {storyResult.message}</p>
-              <p>Error: {storyResult.error}</p>
+            <div className="bg-white rounded-lg p-4 shadow-md text-center w-5/6">
+              <p className="text-2xl">{storyResult}</p>
             </div>
+
             <button
               className="bg-midnight-green text-white rounded-lg p-2 mt-2"
               onClick={handleGoBack}
@@ -87,6 +90,7 @@ const Home = ({ user }) => {
             </button>
           </div>
         )}
+
         {!error && !storyResult && showInput && (
           <div className="p-4 rounded-lg flex items-center">
             <input
