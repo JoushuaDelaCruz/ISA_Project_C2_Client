@@ -14,15 +14,17 @@ const Admin = ({ user }) => {
         const endpoint = "/story/allStories";
         const stories = await getRequest(endpoint);
         console.log(stories);
-        return stories;
+        setLores(stories);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching stories:", error);
         throw error;
       }
     };
-
+  
     getAllStories();
   }, []);
+  
 
   return (
     <main className="background flex flex-col gap-5">
@@ -39,7 +41,7 @@ const Admin = ({ user }) => {
               {lores.map((lore, index) => (
                 <div key={index} className="flex justify-center">
                   <div className="w-full max-w-md h-full">
-                    <StoryCardAdmin text={lore.text} />
+                    <StoryCardAdmin text={lore.story_text} />
                   </div>
                 </div>
               ))}
