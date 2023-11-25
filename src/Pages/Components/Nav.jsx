@@ -8,11 +8,6 @@ const pages = [
     name: "Home",
     path: "/",
   },
-  // {
-  //   id: 2,
-  //   name: "create room",
-  //   path: "/create-room",
-  // },
   { id: 3, name: "profile", path: "/profile" },
   { id: 4, name: "admin", path: "/admin" },
 ];
@@ -63,7 +58,7 @@ const Navbar = ({ pageNum, user }) => {
         </Link>
         <div className="hidden w-full lg:flex justify-end">
           {pages.map((page) => {
-            if (page.id === 4 && user?.user_privilege !== "ADMIN") {
+            if (page.id === 4 && user?.privilege !== "ADMIN") {
               return;
             }
             if (page.id === 3 && !user) {
