@@ -18,6 +18,17 @@ const Profile = ({ user }) => {
     getLores();
   }, []);
 
+  const editLores = (id, text) => {
+    setLores(
+      lores.map((lore) => {
+        if (lore.id === id) {
+          lore.story_text = text;
+        }
+        return lore;
+      })
+    );
+  };
+
   return (
     <main className="background flex flex-col gap-5">
       <Nav pageNum={3} user={user} />
@@ -41,9 +52,11 @@ const Profile = ({ user }) => {
           )}
         </section>
         {lores.length > 0 && (
-          <div className="flex flex-col gap-3 max-w-5xl">
+          <div className="flex flex-col gap-3 max-w-5xl w-full">
             {lores.map((lore) => {
-              return <StoryCard key={lore.id} lore={lore} />;
+              return (
+                <StoryCard key={lore.id} lore={lore} editLores={editLores} />
+              );
             })}
           </div>
         )}
