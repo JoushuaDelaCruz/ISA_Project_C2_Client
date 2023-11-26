@@ -20,6 +20,17 @@ const Home = ({ user }) => {
   const { getRequest } = useRequest();
 
   const handleGetStory = async () => {
+    const generatedStory = async (description) => {
+      try {
+        const tokensEndpoint = `/model/GenerateStory`;
+        const url = `${tokensEndpoint}?description=${encodeURIComponent(description)}`;
+        const tokensResponse = await getRequest(url);
+        return tokensResponse;
+      } catch (error) {
+        console.error(ERROR_GENERATING_TOKEN, error);
+        throw error;
+      }
+    };
     try {
       if (!characterContext.trim()) {
         throw new Error(CHARACTER_CONTEXT_CANT_BE_EMPTY);
