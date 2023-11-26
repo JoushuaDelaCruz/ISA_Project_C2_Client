@@ -123,8 +123,13 @@ const Navbar = ({ pageNum, user }) => {
             >
               <i className="fa-solid fa-x text-3xl pt-4 pl-4"></i>
             </button>
-            <Link to={HOME_PAGE_PATH} className="text-white mt-4 flex justify-center">
-              <span className="text-4xl font-black font-nunito">{TELORE_TEXT}</span>
+            <Link
+              to={HOME_PAGE_PATH}
+              className="text-white mt-4 flex justify-center"
+            >
+              <span className="text-4xl font-black font-nunito">
+                {TELORE_TEXT}
+              </span>
             </Link>
             <div className="text-white text-left w-full px-4 mt-12">
               {pages.map((page) => {

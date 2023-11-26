@@ -19,7 +19,9 @@ const App = () => {
     const verifyUser = async () => {
       const endpoint = "/session";
       const response = await getRequest(endpoint);
-      setUser(response.user);
+      if (response) {
+        setUser(response.user);
+      }
     };
     verifyUser();
   }, []);
