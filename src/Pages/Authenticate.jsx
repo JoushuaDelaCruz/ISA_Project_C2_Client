@@ -10,7 +10,7 @@ const Authenticate = ({ setUser }) => {
   const [isPasswordValid, setIsPasswordValid] = useState(null);
   const [invalidResponse, setInvalidResponse] = useState(null);
   const navigate = useNavigate();
-  const { logInRequest, signUpRequest } = useRequest();
+  const { postRequest } = useRequest();
 
   const toggleLogin = () => {
     setUsername("");
@@ -40,24 +40,41 @@ const Authenticate = ({ setUser }) => {
   };
 
   const handleSignUp = async () => {
-    const credentials = { username: username, password: password };
-    const success = await signUpRequest(credentials, setUser);
-    if (success) {
-      navigate("/");
-    } else {
-      setInvalidResponse("Username already exists");
+    try {
+      const credentials = { username, password };
+      const endpoint = "/signup";
+      const { session } = await postRequest(endpoint, credentials);
+      
+      setUser(session.user);
+      
+      if (session.authenticated) {
+        navigate("/");
+      } else {
+        setInvalidResponse("Unable to authenticate");
+      }
+    } catch (e) {
+      setInvalidResponse("Error signing up");
     }
   };
-
+  
   const handleLogin = async () => {
-    const credentials = { username: username, password: password };
-    const success = await logInRequest(credentials, setUser);
-    if (success) {
-      navigate("/");
-    } else {
-      setInvalidResponse("Invalid username or password");
+    try {
+      const credentials = { username, password };
+      const endpoint = "/signin";
+      const result = await postRequest(endpoint, credentials);
+  
+      setUser(result.user);
+      
+      if (result.user) {
+        navigate("/");
+      } else {
+        setInvalidResponse("Invalid username or password");
+      }
+    } catch (e) {
+      setInvalidResponse("Error logging in");
     }
   };
+  
 
   const handleClick = () => {
     const checkUsername = validateUsername();
