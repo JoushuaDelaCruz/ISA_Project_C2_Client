@@ -1,6 +1,6 @@
 import React from "react";
 
-const StoryCard = ({ text, onDelete }) => {
+const StoryCardAdmin = ({ text, onDelete }) => {
   return (
     <div className="relative py-2 px-4 bg-white/75 text-white font-medium rounded-md min-h-36 shadow-md flex flex-col gap-2">
       <button
@@ -22,4 +22,4 @@ const StoryCard = ({ text, onDelete }) => {
   );
 };
 
-export default StoryCard;
+export default StoryCardAdmin;
