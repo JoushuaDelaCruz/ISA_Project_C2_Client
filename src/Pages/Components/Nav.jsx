@@ -51,8 +51,8 @@ const Navbar = ({ pageNum, user }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleLogOut = () => {
-    const result = logOutRequest();
+  const handleLogOut = async () => {
+    const result = await logOutRequest();
     if (result) {
       window.location.href = HOME_PAGE_PATH;
     } else {
@@ -81,10 +81,11 @@ const Navbar = ({ pageNum, user }) => {
               <Link
                 key={page.id}
                 to={page.path}
-                className={`${page.id === pageNum
+                className={`${
+                  page.id === pageNum
                     ? pageBtnState[0].className
                     : pageBtnState[1].className
-                  }`}
+                }`}
               >
                 {page.name}
               </Link>
