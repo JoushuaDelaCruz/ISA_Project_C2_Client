@@ -46,9 +46,9 @@ const Authenticate = ({ setUser }) => {
       const credentials = { username, password };
       const endpoint = "/signup";
       const { session } = await postRequest(endpoint, credentials);
-      
+
       setUser(session.user);
-      
+
       if (session.authenticated) {
         navigate("/");
       } else {
@@ -58,15 +58,15 @@ const Authenticate = ({ setUser }) => {
       setInvalidResponse("Error signing up");
     }
   };
-  
+
   const handleLogin = async () => {
     try {
       const credentials = { username, password };
       const endpoint = "/signin";
       const result = await postRequest(endpoint, credentials);
-  
+
       setUser(result.user);
-      
+
       if (result.user) {
         navigate("/");
       } else {
@@ -76,7 +76,7 @@ const Authenticate = ({ setUser }) => {
       setInvalidResponse("Error logging in");
     }
   };
-  
+
 
   const handleClick = () => {
     const checkUsername = validateUsername();
@@ -140,18 +140,16 @@ const Authenticate = ({ setUser }) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder={isLogin ? "Username0123" : "Create a new username"}
-                className={`w-full bg-white/60 rounded-md border-2 ${
-                  isUsernameValid ?? true ? "border-white/50" : "border-red-400"
-                } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
+                className={`w-full bg-white/60 rounded-md border-2 ${isUsernameValid ?? true ? "border-white/50" : "border-red-400"
+                  } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
               />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={isLogin ? "Password0123" : "Enter a new password"}
-                className={`w-full bg-white/60 rounded-md border-2 ${
-                  isPasswordValid ?? true ? "border-white/50" : "border-red-400"
-                } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
+                className={`w-full bg-white/60 rounded-md border-2 ${isPasswordValid ?? true ? "border-white/50" : "border-red-400"
+                  } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
               />
             </div>
           </div>

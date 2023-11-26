@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "./Components/Nav";
 import StoryCard from "./Components/StoryCard";
 import useRequest from "./Hooks/useRequest";
-import { 
+import {
   HI_TEXT,
   REMAINING_REQUEST_TEXT,
   YOUR_LORES_TEXT,

@@ -30,6 +30,9 @@ export const HI_TEXT = "Hi";
 export const REMAINING_REQUEST_TEXT = "Remaining Requests:";
 export const YOUR_LORES_TEXT = "Your Lores";
 export const YOUR_LORE_EMPTY_TEXT = "Your Lore Example";
+export const ENDPOINTS_TEXT = "Endpoints";
+export const METHOD_TEXT = "Method";
+export const REQUEST_TEXT = "Requests";
 
 
 export const HTTP_METHODS = {

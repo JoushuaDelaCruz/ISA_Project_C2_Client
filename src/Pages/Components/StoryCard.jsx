@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import useRequest from "../Hooks/useRequest";
-import {   
+import {
   EDIT_BUTTON_TEXT,
   CONFIRM_BUTTON_TEXT,
-  CANCEL_BUTTON_TEXT, 
+  CANCEL_BUTTON_TEXT,
 } from "../Utils/constants";
 
 const StoryCard = ({ lore, editLores }) => {
@@ -36,11 +36,10 @@ const StoryCard = ({ lore, editLores }) => {
           {lore.user_text}
         </h4>
         <TextareaAutosize
-          className={`w-full ${
-            isEditing
+          className={`w-full ${isEditing
               ? "bg-white border rounded-md border-black p-2"
               : "bg-transparent border-none"
-          } text-tyrian-purple text-center sm:text-start resize-none outline-none`}
+            } text-tyrian-purple text-center sm:text-start resize-none outline-none`}
           value={story}
           disabled={!isEditing}
           onChange={(e) => setStory(e.target.value)}

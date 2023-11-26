@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Components/Nav";
 import useRequest from "./Hooks/useRequest";
-import { 
-  ERROR_GENERATING_TOKEN, 
-  CHARACTER_CONTEXT_CANT_BE_EMPTY, 
-  DESCRIPTION_TEXT, 
-  UNABLE_TO_GENERATE_STORY, 
-  ERROR_FETCHING_STORY, 
-  STORY_RESULT_TEXT, 
-  ERROR_OCCUR_TEXT, 
-  BACK_TEXT 
+import {
+  ERROR_GENERATING_TOKEN,
+  CHARACTER_CONTEXT_CANT_BE_EMPTY,
+  DESCRIPTION_TEXT,
+  UNABLE_TO_GENERATE_STORY,
+  ERROR_FETCHING_STORY,
+  STORY_RESULT_TEXT,
+  ERROR_OCCUR_TEXT,
+  BACK_TEXT
 } from "./Utils/constants";
 
 

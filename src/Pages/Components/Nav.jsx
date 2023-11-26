@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useRequest from "../Hooks/useRequest";
-import {   
+import {
   HOME_PAGE_PATH,
   PROFILE_PAGE_PATH,
   ADMIN_PAGE_PATH,
@@ -81,11 +81,10 @@ const Navbar = ({ pageNum, user }) => {
               <Link
                 key={page.id}
                 to={page.path}
-                className={`${
-                  page.id === pageNum
+                className={`${page.id === pageNum
                     ? pageBtnState[0].className
                     : pageBtnState[1].className
-                }`}
+                  }`}
               >
                 {page.name}
               </Link>
