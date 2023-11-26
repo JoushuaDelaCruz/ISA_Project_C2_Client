@@ -4,6 +4,11 @@ import StoryCardAdmin from "./Components/StoryCardAdmin";
 import useRequest from "./Hooks/useRequest";
 import { useLoaderData } from "react-router-dom";
 import EndpointsCard from "./Components/EndpointsCard";
+import {
+  NO_USER_STORIES,
+  ERROR_FETCHING_STORIES,
+  ALL_USER_LORE_TEXT,
+} from "./Utils/constants";
 
 const Admin = ({ user }) => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +24,7 @@ const Admin = ({ user }) => {
         setLores(stories);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching stories:", error);
+        console.error(ERROR_FETCHING_STORIES, error);
         throw error;
       }
     };
@@ -45,10 +50,10 @@ const Admin = ({ user }) => {
           ))}
         </section>
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3 text-center uppercase text-xl text-midnight-green mt-4">
-          <h3 className="flex justify-center">All User Lores</h3>
+          <h3 className="flex justify-center">{ALL_USER_LORE_TEXT}</h3>
         </section>
         {loading ? (
-          <p>Loading...</p>
+          <p>{LOADING_TEXT}</p>
         ) : lores.length > 0 ? (
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-3 gap-3">
@@ -62,9 +67,7 @@ const Admin = ({ user }) => {
             </div>
           </div>
         ) : (
-          <h3 className="flex justify-center">
-            There are no user lores in the database
-          </h3>
+          <h3 className="flex justify-center">{NO_USER_STORIES}</h3>
         )}
       </section>
     </main>

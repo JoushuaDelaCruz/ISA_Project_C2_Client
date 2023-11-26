@@ -6,7 +6,6 @@ import {
   RouterProvider,
   createRoutesFromElements,
 } from "react-router-dom";
-import Teams from "./Pages/Teams";
 import Admin from "./Pages/Admin";
 import { useEffect, useState } from "react";
 import Profile from "./Pages/Profile";
@@ -48,7 +47,6 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<Home user={user} />} />
-        <Route path="/teams" element={<Teams />} />
         <Route
           path="/auth"
           exact

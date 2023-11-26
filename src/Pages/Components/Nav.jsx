@@ -1,15 +1,28 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useRequest from "../Hooks/useRequest";
+import {   
+  HOME_PAGE_PATH,
+  PROFILE_PAGE_PATH,
+  ADMIN_PAGE_PATH,
+  LOG_OUT_TEXT,
+  LOG_IN_TEXT,
+  TELORE_TEXT,
+  HOME_PAGE,
+  PROFILE_PAGE,
+  ADMIN_PAGE,
+  SOMETHING_WENT_WRONG,
+  AUTH_PATH,
+} from "../Utils/constants";
 
 const pages = [
   {
     id: 1,
-    name: "Home",
-    path: "/",
+    name: HOME_PAGE,
+    path: HOME_PAGE_PATH,
   },
-  { id: 3, name: "profile", path: "/profile" },
-  { id: 4, name: "admin", path: "/admin" },
+  { id: 3, name: PROFILE_PAGE, path: PROFILE_PAGE_PATH },
+  { id: 4, name: ADMIN_PAGE, path: ADMIN_PAGE_PATH },
 ];
 
 const pageBtnState = [
@@ -41,9 +54,9 @@ const Navbar = ({ pageNum, user }) => {
   const handleLogOut = () => {
     const result = logOutRequest();
     if (result) {
-      window.location.href = "/";
+      window.location.href = HOME_PAGE_PATH;
     } else {
-      alert("Something went wrong");
+      alert(SOMETHING_WENT_WRONG);
     }
   };
 
@@ -54,7 +67,7 @@ const Navbar = ({ pageNum, user }) => {
           to="/"
           className="text-white lg:block hidden text-4xl font-nunito font-black"
         >
-          TeLore
+          {TELORE_TEXT}
         </Link>
         <div className="hidden w-full lg:flex justify-end">
           {pages.map((page) => {
@@ -83,11 +96,11 @@ const Navbar = ({ pageNum, user }) => {
               className={`${pageBtnState[1].className}`}
               onClick={handleLogOut}
             >
-              Log Out
+              {LOG_OUT_TEXT}
             </button>
           ) : (
-            <Link to={"/auth"} className={`${pageBtnState[1].className}`}>
-              Log in
+            <Link to={AUTH_PATH} className={`${pageBtnState[1].className}`}>
+              {LOG_IN_TEXT}
             </Link>
           )}
         </div>
@@ -111,8 +124,8 @@ const Navbar = ({ pageNum, user }) => {
             >
               <i className="fa-solid fa-x text-3xl pt-4 pl-4"></i>
             </button>
-            <Link to="/" className="text-white mt-4 flex justify-center">
-              <span className="text-4xl font-black font-nunito">TeLore</span>
+            <Link to={HOME_PAGE_PATH} className="text-white mt-4 flex justify-center">
+              <span className="text-4xl font-black font-nunito">{TELORE_TEXT}</span>
             </Link>
             <div className="text-white text-left w-full px-4 mt-12">
               {pages.map((page) => {

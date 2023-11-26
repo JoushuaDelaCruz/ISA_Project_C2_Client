@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useRequest from "./Hooks/useRequest";
+import { LOG_IN_TEXT, SIGN_UP_TEXT, TELORE_TEXT } from "./Utils/constants";
+
 
 const Authenticate = ({ setUser }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -100,7 +102,7 @@ const Authenticate = ({ setUser }) => {
           className="text-white h-fit py-7 text-4xl font-black font-nunito pt-10"
         >
           {" "}
-          TeLore{" "}
+          {TELORE_TEXT}{" "}
         </Link>
         <div className="flex-grow flex justify-center items-center w-11/12 max-w-md h-5/6 md:h-1/2">
           <div className="w-full">
@@ -113,7 +115,7 @@ const Authenticate = ({ setUser }) => {
                 onClick={toggleLogin}
                 disabled={isLogin}
               >
-                Log In
+                {LOG_IN_TEXT}
               </button>
               <button
                 className={
@@ -124,7 +126,7 @@ const Authenticate = ({ setUser }) => {
                 disabled={!isLogin}
               >
                 {" "}
-                Sign Up{" "}
+                {SIGN_UP_TEXT}{" "}
               </button>
             </header>
             <div className=" flex flex-col justify-around bg-tyrian-purple/30 rounded-b-md px-3 py-8 gap-5">

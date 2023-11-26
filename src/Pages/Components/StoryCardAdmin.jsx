@@ -1,5 +1,6 @@
 import React from "react";
 import useRequest from "../Hooks/useRequest";
+import { ERROR_DELETING_LORE } from "../Utils/constants";
 
 const StoryCardAdmin = ({ lore, deleteLore }) => {
   const { deleteRequest } = useRequest();
@@ -12,7 +13,7 @@ const StoryCardAdmin = ({ lore, deleteLore }) => {
         deleteLore(lore.id);
       }
     } catch (error) {
-      console.error("Error deleting lore:", error);
+      console.error(ERROR_DELETING_LORE, error);
       throw error;
     }
   };
