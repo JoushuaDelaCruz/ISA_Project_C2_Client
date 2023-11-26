@@ -31,6 +31,13 @@ const useRequest = () => {
     return response;
   };
 
+  const patchRequest = async (endpoint, data = undefined) => {
+    const url = urlConstructor(endpoint);
+    let response = await fetch(url, getConfig("PATCH", data));
+    response = await response.json();
+    return response;
+  };
+
   const logInRequest = async (credentials, setUser) => {
     try {
       const endpoint = "/signin";
@@ -104,6 +111,7 @@ const useRequest = () => {
     signUpRequest,
     getContextToStory,
     pingAuthRequest,
+    patchRequest,
   };
 };
 
