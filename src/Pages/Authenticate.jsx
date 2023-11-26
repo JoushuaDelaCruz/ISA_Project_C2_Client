@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useRequest from "./Hooks/useRequest";
 import { LOG_IN_TEXT, SIGN_UP_TEXT, TELORE_TEXT } from "./Utils/constants";
 
-
 const Authenticate = ({ setUser }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
@@ -45,11 +44,10 @@ const Authenticate = ({ setUser }) => {
     try {
       const credentials = { username, password };
       const endpoint = "/signup";
-      const { session } = await postRequest(endpoint, credentials);
+      const response = await postRequest(endpoint, credentials);
+      setUser(response.user);
 
-      setUser(session.user);
-
-      if (session.authenticated) {
+      if (response.success) {
         navigate("/");
       } else {
         setInvalidResponse("Unable to authenticate");
@@ -77,7 +75,6 @@ const Authenticate = ({ setUser }) => {
     }
   };
 
-
   const handleClick = () => {
     const checkUsername = validateUsername();
     const checkPassword = validatePassword();
@@ -88,6 +85,7 @@ const Authenticate = ({ setUser }) => {
     }
 
     if (isLogin) {
+      console.log("login");
       handleLogin();
     } else {
       handleSignUp();
@@ -140,16 +138,18 @@ const Authenticate = ({ setUser }) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder={isLogin ? "Username0123" : "Create a new username"}
-                className={`w-full bg-white/60 rounded-md border-2 ${isUsernameValid ?? true ? "border-white/50" : "border-red-400"
-                  } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
+                className={`w-full bg-white/60 rounded-md border-2 ${
+                  isUsernameValid ?? true ? "border-white/50" : "border-red-400"
+                } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
               />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={isLogin ? "Password0123" : "Enter a new password"}
-                className={`w-full bg-white/60 rounded-md border-2 ${isPasswordValid ?? true ? "border-white/50" : "border-red-400"
-                  } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
+                className={`w-full bg-white/60 rounded-md border-2 ${
+                  isPasswordValid ?? true ? "border-white/50" : "border-red-400"
+                } py-1 px-2 text-lg placeholder:text-white/60 font-extrabold focus:outline-none focus:bg-transparent focus:text-white`}
               />
             </div>
           </div>
