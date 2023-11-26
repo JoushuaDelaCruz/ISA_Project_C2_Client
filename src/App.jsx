@@ -21,6 +21,8 @@ const App = () => {
       const response = await getRequest(endpoint);
       if (response) {
         setUser(response.user);
+      } else {
+        setUser(null);
       }
     };
     verifyUser();
