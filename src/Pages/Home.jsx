@@ -7,24 +7,44 @@ const Home = ({ user }) => {
   const [storyResult, setStoryResult] = useState(null);
   const [error, setError] = useState(null);
   const [showInput, setShowInput] = useState(true);
-  const { getContextToStory } = useRequest();
+  const { getRequest } = useRequest();
+
 
   const handleGetStory = async () => {
+    const generatedStory = async (description) => {
+      try {
+        const tokensEndpoint = `/model/GenerateStory`;
+        const url = `${tokensEndpoint}?description=${encodeURIComponent(description)}`;
+        const tokensResponse = await getRequest(url);
+        return tokensResponse;
+      } catch (error) {
+        console.error("Error generating tokens:", error);
+        throw error;
+      }
+    };
+  
     try {
       if (!characterContext.trim()) {
         throw new Error("Character context cannot be empty.");
       }
-
-      const response = await getContextToStory(characterContext);
-      setStoryResult(response);
-      setError(null);
-      setShowInput(false);
+  
+      const response = await generatedStory(characterContext);
+      const storyResult = response.prompt;
+  
+      if (storyResult) {
+        setStoryResult(storyResult);
+        setError(null);
+        setShowInput(false);
+      } else {
+        setError(new Error("Unable to generate story."));
+      }
     } catch (error) {
       console.error("Error fetching story:", error);
       setStoryResult(null);
       setError(error);
     }
   };
+  
 
   const handleGoBack = () => {
     setShowInput(true);
