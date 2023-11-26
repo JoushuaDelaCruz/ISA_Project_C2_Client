@@ -1,14 +1,14 @@
-import { HTTP_METHODS, ENDPOINTS } from '../Utils/constants.jsx';
+import { HTTP_METHODS, ENDPOINTS } from "../Utils/constants.jsx";
 
 const useRequest = () => {
   const getConfig = (method, data) => {
     const config = {
       method: method,
-      mode: 'cors',
+      mode: "cors",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      credentials: 'include',
+      credentials: "include",
       body: JSON.stringify(data),
     };
     return config;
@@ -21,33 +21,59 @@ const useRequest = () => {
   const getRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     let response = await fetch(url, getConfig(HTTP_METHODS.GET, data));
-    response = await response.json();
-    return response;
+    if (response.status === 200) {
+      response = await response.json();
+      return response;
+    }
+    if (response.status === 401) {
+      logOutRequest();
+    }
+    if (response.status === 405) {
+      response = await response.json();
+      alert(response.message);
+    }
   };
 
   const postRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     let response = await fetch(url, getConfig(HTTP_METHODS.POST, data));
-    response = await response.json();
-    return response;
+    if (response.status === 200) {
+      response = await response.json();
+      return response;
+    }
+    if (response.status === 401) {
+      logOutRequest();
+    }
+    if (response.status === 405) {
+      console.log(await response.json());
+    }
   };
 
   const patchRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     let response = await fetch(url, getConfig(HTTP_METHODS.PATCH, data));
-    response = await response.json();
-    return response;
+    if (response.status === 200) {
+      response = await response.json();
+      return response;
+    }
+    if (response.status === 401) {
+      logOutRequest();
+    }
   };
 
   const deleteRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     const response = await fetch(url, getConfig(HTTP_METHODS.DELETE, data));
-    return response.status === 200;
+    if (response.status === 200) {
+      return true;
+    }
+    if (response.status === 401) {
+      logOutRequest();
+    }
   };
 
   const logOutRequest = async () => {
     const response = await getRequest(ENDPOINTS.SIGNOUT);
-    console.log(response);
     return response;
   };
 
