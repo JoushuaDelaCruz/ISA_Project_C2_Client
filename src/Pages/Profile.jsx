@@ -54,13 +54,13 @@ const Profile = ({ user }) => {
           </h2>
         </div>
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3  text-center uppercase text-xl text-midnight-green">
-          {lores.length > 0 ? (
+          {lores && lores.length > 0 ? (
             <h3> {YOUR_LORES_TEXT} </h3>
           ) : (
             <h3>{YOUR_LORE_EMPTY_TEXT}</h3>
           )}
         </section>
-        {lores.length > 0 && (
+        {lores && lores.length > 0 && (
           <div className="flex flex-col gap-3 max-w-5xl w-full">
             {lores.map((lore) => {
               return (

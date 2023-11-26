@@ -35,6 +35,17 @@ export const YOUR_LORE_EMPTY_TEXT = "Your Lore Example";
 export const ENDPOINTS_TEXT = "Endpoints";
 export const METHOD_TEXT = "Method";
 export const REQUEST_TEXT = "Requests";
+export const ALL_ENDPOINTS_TEXT = "All Endpoints";
+export const ALL_USER_TEXT = "All Users";
+export const UNABLE_AUTH_TEXT = "Unable to authenticate";
+export const ERROR_SIGNING_UP = "Error signing up";
+export const INVALID_USER_PASS_TEXT = "Invalid username or password";
+export const ERROR_LOGIN = "Error logging in:";
+export const PLEASE_VALID_USER_PASS_TEXT = "Please enter a valid username and password";
+export const USERNAME_TEXT = "Username";
+export const USER_TYPE_TEXT = "User Type";
+export const API_CALLS_LEFT_TEXT = "API Calls Left";
+export const API_CALLS_REQUEST_TEXT = "API Calls Request";
 
 export const HTTP_METHODS = {
   GET: "GET",

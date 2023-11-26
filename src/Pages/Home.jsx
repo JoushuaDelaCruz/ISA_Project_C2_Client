@@ -5,39 +5,27 @@ import {
   ERROR_GENERATING_TOKEN,
   CHARACTER_CONTEXT_CANT_BE_EMPTY,
   DESCRIPTION_TEXT,
-  UNABLE_TO_GENERATE_STORY,
   ERROR_FETCHING_STORY,
   STORY_RESULT_TEXT,
   ERROR_OCCUR_TEXT,
   BACK_TEXT
 } from "./Utils/constants";
 
-
 const Home = ({ user }) => {
   const [characterContext, setCharacterContext] = useState("");
   const [storyResult, setStoryResult] = useState(null);
   const [error, setError] = useState(null);
   const [showInput, setShowInput] = useState(true);
+  const [loading, setLoading] = useState(false); // Added loading state
   const { getRequest } = useRequest();
 
-
   const handleGetStory = async () => {
-    const generatedStory = async (description) => {
-      try {
-        const tokensEndpoint = `/model/GenerateStory`;
-        const url = `${tokensEndpoint}?description=${encodeURIComponent(description)}`;
-        const tokensResponse = await getRequest(url);
-        return tokensResponse;
-      } catch (error) {
-        console.error(ERROR_GENERATING_TOKEN, error);
-        throw error;
-      }
-    };
-
     try {
       if (!characterContext.trim()) {
         throw new Error(CHARACTER_CONTEXT_CANT_BE_EMPTY);
       }
+
+      setLoading(true);
 
       const response = await generatedStory(characterContext);
       const storyResult = response.prompt;
@@ -47,15 +35,16 @@ const Home = ({ user }) => {
         setError(null);
         setShowInput(false);
       } else {
-        setError(new Error(UNABLE_TO_GENERATE_STORY));
+        setError(new Error(response));
       }
     } catch (error) {
       console.error(ERROR_FETCHING_STORY, error);
       setStoryResult(null);
       setError(error);
+    } finally {
+      setLoading(false); 
     }
   };
-
 
   const handleGoBack = () => {
     setShowInput(true);
@@ -135,6 +124,12 @@ const Home = ({ user }) => {
             >
               <i className="fa-solid fa-arrow-right-to-bracket text-2xl p-1.5 pr-2"></i>
             </button>
+          </div>
+        )}
+
+        {loading && ( 
+          <div className="relative flex flex-col items-center justify-center mt-72">
+            <p>Loading...</p>
           </div>
         )}
       </div>
