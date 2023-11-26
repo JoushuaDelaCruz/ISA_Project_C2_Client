@@ -26,7 +26,8 @@ const App = () => {
 
   const adminLoader = async () => {
     if (user && user.privilege === "ADMIN") {
-      return null;
+      const response = await getRequest("/admin/endpoints");
+      return response;
     } else {
       window.location.href = "/";
       return null;
