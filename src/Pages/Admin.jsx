@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Components/Nav";
 import StoryCardAdmin from "./Components/StoryCardAdmin";
 import useRequest from "./Hooks/useRequest";
-import {NO_USER_STORIES, ERROR_FETCHING_STORIES, ALL_USER_LORE_TEXT} from "./Utils/constants";
+import {NO_USER_STORIES, ERROR_FETCHING_STORIES, ALL_USER_LORE_TEXT, LOADING_TEXT} from "./Utils/constants";
 
 const Admin = ({ user }) => {
   const [loading, setLoading] = useState(true);
