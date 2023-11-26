@@ -9,6 +9,8 @@ import {
   ERROR_FETCHING_STORIES,
   ALL_USER_LORE_TEXT,
   LOADING_TEXT,
+  ALL_ENDPOINTS_TEXT,
+  ALL_USER_TEXT,
 } from "./Utils/constants";
 import UserCard from "./Components/UserCard";
 
