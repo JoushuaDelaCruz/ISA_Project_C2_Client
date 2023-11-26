@@ -5,7 +5,6 @@ import {
   ERROR_GENERATING_TOKEN,
   CHARACTER_CONTEXT_CANT_BE_EMPTY,
   DESCRIPTION_TEXT,
-  UNABLE_TO_GENERATE_STORY,
   ERROR_FETCHING_STORY,
   STORY_RESULT_TEXT,
   ERROR_OCCUR_TEXT,
@@ -47,7 +46,7 @@ const Home = ({ user }) => {
         setError(null);
         setShowInput(false);
       } else {
-        setError(new Error(UNABLE_TO_GENERATE_STORY));
+        setError(new Error(response));
       }
     } catch (error) {
       console.error(ERROR_FETCHING_STORY, error);

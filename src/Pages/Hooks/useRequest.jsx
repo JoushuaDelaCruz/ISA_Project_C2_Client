@@ -21,19 +21,22 @@ const useRequest = () => {
   const getRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     let response = await fetch(url, getConfig(HTTP_METHODS.GET, data));
+  
     if (response.status === 200) {
       response = await response.json();
       return response;
     }
+  
     if (response.status === 401) {
       logOutRequest();
     }
+  
     if (response.status === 405) {
       response = await response.json();
-      alert(response.message);
+      return response.message; 
     }
   };
-
+  
   const postRequest = async (endpoint, data = undefined) => {
     const url = urlConstructor(endpoint);
     let response = await fetch(url, getConfig(HTTP_METHODS.POST, data));

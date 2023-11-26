@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useRequest from "./Hooks/useRequest";
-import { LOG_IN_TEXT, SIGN_UP_TEXT, TELORE_TEXT } from "./Utils/constants";
+import { 
+  LOG_IN_TEXT, 
+  SIGN_UP_TEXT, 
+  TELORE_TEXT,
+  UNABLE_AUTH_TEXT,
+  INVALID_USER_PASS_TEXT,
+  ERROR_SIGNING_UP,
+  ERROR_LOGIN,
+  PLEASE_VALID_USER_PASS_TEXT,
+} from "./Utils/constants";
 
 
 const Authenticate = ({ setUser }) => {
@@ -52,10 +61,10 @@ const Authenticate = ({ setUser }) => {
       if (session.authenticated) {
         navigate("/");
       } else {
-        setInvalidResponse("Unable to authenticate");
+        setInvalidResponse({UNABLE_AUTH_TEXT});
       }
     } catch (e) {
-      setInvalidResponse("Error signing up");
+      setInvalidResponse(ERROR_SIGNING_UP);
     }
   };
 
@@ -70,10 +79,10 @@ const Authenticate = ({ setUser }) => {
       if (result.user) {
         navigate("/");
       } else {
-        setInvalidResponse("Invalid username or password");
+        setInvalidResponse(INVALID_USER_PASS_TEXT);
       }
     } catch (e) {
-      setInvalidResponse("Error logging in");
+      setInvalidResponse(ERROR_LOGIN);
     }
   };
 
@@ -83,7 +92,7 @@ const Authenticate = ({ setUser }) => {
     const checkPassword = validatePassword();
 
     if (!checkPassword || !checkUsername) {
-      setInvalidResponse("Please enter a valid username and password");
+      setInvalidResponse(PLEASE_VALID_USER_PASS_TEXT);
       return;
     }
 

@@ -55,7 +55,7 @@ const Admin = ({ user }) => {
 
       <section className="flex h-full flex-1 w-full px-7 pb-5 items-center flex-col gap-3">
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3 text-center uppercase text-xl text-midnight-green mt-4">
-          <h3 className="flex justify-center">All Endpoints</h3>
+          <h3 className="flex justify-center">{ALL_ENDPOINTS_TEXT}</h3>
         </section>
         <section className="flex lg:grid-cols-3 max-w-5xl w-full gap-2 flex-col justify-center items-center md:grid-cols-2 md:grid md:justify-items-center">
           {endpoints.map((endpoint) => (
@@ -63,7 +63,7 @@ const Admin = ({ user }) => {
           ))}
         </section>
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3 text-center uppercase text-xl text-midnight-green mt-4">
-          <h3 className="flex justify-center">All Users</h3>
+          <h3 className="flex justify-center">{ALL_USER_TEXT}</h3>
         </section>
         <section className="flex lg:grid-cols-3 max-w-5xl w-full gap-2 flex-col justify-center items-center md:grid-cols-2 md:grid md:justify-items-center">
           {users.map((user) => {

@@ -10,7 +10,6 @@ import {
 } from "./Utils/constants";
 
 const Profile = ({ user }) => {
-  console.log(user);
   const [loading, setLoading] = useState(true);
   const [lores, setLores] = useState([]);
   const { getRequest } = useRequest();
