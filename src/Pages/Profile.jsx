@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import Nav from "./Components/Nav";
 import StoryCard from "./Components/StoryCard";
 import useRequest from "./Hooks/useRequest";
+import { 
+  HI_TEXT,
+  REMAINING_REQUEST_TEXT,
+  YOUR_LORES_TEXT,
+  YOUR_LORE_EMPTY_TEXT,
+} from "./Utils/constants";
 
 const Profile = ({ user }) => {
   const [loading, setLoading] = useState(true);
@@ -37,18 +43,18 @@ const Profile = ({ user }) => {
           {" "}
           <h1 className="text-2xl px-4 text-yellow-100  font-semibold">
             {" "}
-            Hi! <span className="font-bold">{user?.username}</span>{" "}
+            {HI_TEXT} <span className="font-bold">{user?.username}</span>{" "}
           </h1>
           <i className="fa-regular fa-face-smile fa-xl text-yellow-300"></i>{" "}
         </header>
         <div className="flex flex-col w-full font-medium text-white bg-white/40 rounded-md max-w-5xl p-3 gap-5">
-          <h2> Remaining Requests: {user?.api_calls_left} </h2>
+          <h2> {REMAINING_REQUEST_TEXT} {user?.api_calls_left} </h2>
         </div>
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3  text-center uppercase text-xl text-midnight-green">
           {lores.length > 0 ? (
-            <h3> Your Lores </h3>
+            <h3> {YOUR_LORES_TEXT} </h3>
           ) : (
-            <h3>Your lores are empty.</h3>
+            <h3>{YOUR_LORE_EMPTY_TEXT}</h3>
           )}
         </section>
         {lores.length > 0 && (

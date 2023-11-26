@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import useRequest from "../Hooks/useRequest";
+import {   
+  EDIT_BUTTON_TEXT,
+  CONFIRM_BUTTON_TEXT,
+  CANCEL_BUTTON_TEXT, 
+} from "../Utils/constants";
 
 const StoryCard = ({ lore, editLores }) => {
   const [story, setStory] = useState(lore.story_text);
@@ -50,7 +55,7 @@ const StoryCard = ({ lore, editLores }) => {
               disabled={isEditing}
             >
               <i className="fa-regular fa-pen-to-square fa-lg"></i>
-              Edit
+              {EDIT_BUTTON_TEXT}
             </button>
           )}
           {isEditing && (
@@ -60,14 +65,14 @@ const StoryCard = ({ lore, editLores }) => {
                 onClick={editStory}
               >
                 <i className="fa-regular fa-pen-to-square fa-lg"></i>
-                Confirm
+                {CONFIRM_BUTTON_TEXT}
               </button>
               <button
                 className="flex gap-2 items-center px-2 py-1 rounded-md bg-red-600"
                 onClick={cancelEdit}
               >
                 <i className="fa-solid fa-ban"></i>
-                Cancel
+                {CANCEL_BUTTON_TEXT}
               </button>
             </>
           )}
