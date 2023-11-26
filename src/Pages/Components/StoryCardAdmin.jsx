@@ -19,7 +19,7 @@ const StoryCardAdmin = ({ lore, deleteLore }) => {
   };
 
   return (
-    <div className="relative py-2 px-4 bg-white/75 text-white font-medium rounded-md min-h-36 shadow-md flex flex-col gap-2">
+    <div className="relative py-2 px-4 bg-white/75 text-white font-medium rounded-md h-full shadow-md flex flex-col gap-2">
       <button
         onClick={onDelete}
         className="absolute top-0 right-0 mt-1 mr-1 text-red-800 hover:text-red-500 focus:outline-none"
@@ -31,7 +31,7 @@ const StoryCardAdmin = ({ lore, deleteLore }) => {
           {lore.user_text}
         </h4>
       </div>
-      <div>
+      <div className="h-full">
         <p className="text-sm text-tyrian-purple">{lore.story_text}</p>
       </div>
     </div>
