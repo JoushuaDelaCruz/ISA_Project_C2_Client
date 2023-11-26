@@ -94,7 +94,6 @@ const Authenticate = ({ setUser }) => {
     }
 
     if (isLogin) {
-      console.log("login");
       handleLogin();
     } else {
       handleSignUp();

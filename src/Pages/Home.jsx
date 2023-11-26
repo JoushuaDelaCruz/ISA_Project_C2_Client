@@ -16,7 +16,7 @@ const Home = ({ user }) => {
   const [storyResult, setStoryResult] = useState(null);
   const [error, setError] = useState(null);
   const [showInput, setShowInput] = useState(true);
-  const [loading, setLoading] = useState(false); // Added loading state
+  const [loading, setLoading] = useState(false);
   const { getRequest } = useRequest();
 
   const handleGetStory = async () => {
