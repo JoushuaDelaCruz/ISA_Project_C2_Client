@@ -21,10 +21,13 @@ const Admin = ({ user }) => {
         throw error;
       }
     };
-  
+
     getAllStories();
   }, []);
-  
+
+  const deleteLore = (id) => {
+    setLores(lores.filter((lore) => lore.id !== id));
+  };
 
   return (
     <main className="background flex flex-col gap-5">
@@ -41,7 +44,7 @@ const Admin = ({ user }) => {
               {lores.map((lore, index) => (
                 <div key={index} className="flex justify-center">
                   <div className="w-full max-w-md h-full">
-                    <StoryCardAdmin text={lore.story_text} />
+                    <StoryCardAdmin lore={lore} deleteLore={deleteLore} />
                   </div>
                 </div>
               ))}

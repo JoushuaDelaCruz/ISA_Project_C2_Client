@@ -38,6 +38,12 @@ const useRequest = () => {
     return response;
   };
 
+  const deleteRequest = async (endpoint, data = undefined) => {
+    const url = urlConstructor(endpoint);
+    const response = await fetch(url, getConfig("DELETE", data));
+    return response.status === 200;
+  };
+
   const logInRequest = async (credentials, setUser) => {
     try {
       const endpoint = "/signin";
@@ -112,6 +118,7 @@ const useRequest = () => {
     getContextToStory,
     pingAuthRequest,
     patchRequest,
+    deleteRequest,
   };
 };
 
