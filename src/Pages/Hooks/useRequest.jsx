@@ -13,7 +13,6 @@ const useRequest = () => {
   };
 
   const urlConstructor = (endpoint) => {
-    // Make sure to add the VITE_SERVER variable to your .env file
     return import.meta.env.VITE_SERVER + endpoint;
   };
 
