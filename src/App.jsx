@@ -7,7 +7,6 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Teams from "./Pages/Teams";
-import CreateRoom from "./Pages/CreateRoom";
 import Admin from "./Pages/Admin";
 import { useEffect, useState } from "react";
 import Profile from "./Pages/Profile";
@@ -49,7 +48,6 @@ const App = () => {
       <Route path="/">
         <Route index element={<Home user={user} />} />
         <Route path="/teams" element={<Teams />} />
-        <Route path="/create-room" element={<CreateRoom />} />
         <Route
           path="/auth"
           exact
