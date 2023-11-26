@@ -10,7 +10,6 @@ import {
 } from "./Utils/constants";
 
 const Profile = ({ user }) => {
-  console.log(user);
   const [loading, setLoading] = useState(true);
   const [lores, setLores] = useState([]);
   const { getRequest } = useRequest();
@@ -49,7 +48,10 @@ const Profile = ({ user }) => {
           <i className="fa-regular fa-face-smile fa-xl text-yellow-300"></i>{" "}
         </header>
         <div className="flex flex-col w-full font-medium text-white bg-white/40 rounded-md max-w-5xl p-3 gap-5">
-          <h2> {REMAINING_REQUEST_TEXT} {user?.api_calls} </h2>
+          <h2>
+            {" "}
+            {REMAINING_REQUEST_TEXT} {user?.api_calls}{" "}
+          </h2>
         </div>
         <section className="bg-white/70 font-bold rounded-md w-full max-w-5xl p-3  text-center uppercase text-xl text-midnight-green">
           {lores.length > 0 ? (
