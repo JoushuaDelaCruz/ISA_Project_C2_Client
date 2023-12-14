@@ -1,8 +1,17 @@
-# React + Vite
+# TeLore
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Official Link: https://isa-project.netlify.app/ - note, server is not hosted.
 
-Currently, two official plugins are available:
+## Project Overview:
+* This website is solely to demonstrate server authentication and security.
+* A website to craft fantasy backstories for characters context using artifical intelligence. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features:
+* User are limited to 20 requests - unless they pay :)
+* User input can generate a story created by machine learning model and ChatGPT API.
+* Admin can see overall number of requests done to all routers on the server
+* Admin can see all stories created by users and each users available requests.
+
+## Future Development Note:
+* Refactor Tailwind CSS to SCSS/CSS external file
+* Fix the UI for the home page
