@@ -14,4 +14,5 @@ Official Link: https://isa-project.netlify.app/ - note, server is not hosted.
 
 ## Future Development Note:
 * Refactor Tailwind CSS to SCSS/CSS external file
-* Fix the UI for the home page
+* Redesign the UI for the home page
+* Create  a 404 page.
